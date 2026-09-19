@@ -1,0 +1,408 @@
+/* ==========================================================
+   PALETA (cámbiala aquí si quieres)
+   ========================================================== */
+:root {
+  --rosa-fondo: #ffe3ea;
+  --rosa-medio: #ffb3c6;
+  --rojo: #d7263d;          /* rojo casita de Snoopy */
+  --cielo: #cfe8f7;
+  --crema: #fffaf0;
+  --tinta: #3a2a35;
+  --sombra: 0 6px 0 rgba(215, 38, 61, .25);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html { height: 100%; }
+body {
+  min-height: 100%;
+  font-family: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
+  color: var(--tinta);
+  background:
+    radial-gradient(circle at 15% 10%, var(--cielo) 0 18%, transparent 19%),
+    radial-gradient(circle at 90% 85%, var(--cielo) 0 14%, transparent 15%),
+    var(--rosa-fondo);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* ---------- Páginas ---------- */
+.pagina {
+  display: none;
+  position: relative;
+  min-height: 100dvh;
+  padding: max(20px, env(safe-area-inset-top)) 20px max(28px, env(safe-area-inset-bottom));
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+}
+.pagina.activa { display: flex; animation: entrada .45s ease; }
+@keyframes entrada { from { opacity: 0; transform: scale(.97); } to { opacity: 1; transform: none; } }
+
+/* ---------- Texto ---------- */
+.titulo {
+  font-size: clamp(1.9rem, 8vw, 3rem);
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--rojo);
+  max-width: 16ch;
+  text-wrap: balance;
+}
+#carta .titulo, #inicio .titulo { max-width: 18ch; }
+.pregunta { font-size: clamp(1.25rem, 5.5vw, 1.7rem); font-weight: 500; max-width: 22ch; }
+.subtitulo { font-size: clamp(1.1rem, 4.5vw, 1.4rem); max-width: 26ch; }
+
+/* ---------- Botones ---------- */
+.btn {
+  font: inherit;
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 14px 34px;
+  border: 3px solid var(--rojo);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+  box-shadow: var(--sombra);
+}
+.btn:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(215,38,61,.25); }
+.btn-si   { background: var(--rojo); color: #fff; }
+.btn-no   { background: #fff; color: var(--rojo); }
+.btn-suave{ background: #fff; color: var(--rojo); }
+.botones { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.btn-grande { transform: scale(1.12); }
+.mensaje-no {
+  background: var(--crema);
+  border: 2px dashed var(--rojo);
+  border-radius: 18px;
+  padding: 12px 18px;
+  max-width: 300px;
+  animation: entrada .35s ease;
+}
+.volver {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  left: 14px;
+  font: inherit;
+  background: #fff;
+  border: 2px solid var(--rojo);
+  color: var(--rojo);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+/* ---------- Espacios para imágenes de Snoopy ---------- */
+.snoopy-slot { width: min(52vw, 210px); }
+.snoopy-slot.grande { width: min(72vw, 300px); }
+.snoopy-slot img { width: 100%; height: auto; display: block; }
+.ph {
+  width: 100%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border: 3px dashed var(--rojo);
+  border-radius: 24px;
+  background: rgba(255,255,255,.6);
+  color: var(--rojo);
+  font-size: .8rem;
+  line-height: 1.3;
+  word-break: break-all;
+}
+
+/* ---------- Regalos ---------- */
+.regalos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  width: min(100%, 460px);
+}
+.regalo {
+  font: inherit;
+  background: var(--crema);
+  border: 3px solid var(--rojo);
+  border-radius: 26px;
+  padding: 12px 8px 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--sombra);
+  transition: transform .15s;
+  color: var(--tinta);
+  font-weight: 600;
+}
+.regalo .snoopy-slot { width: 100%; }
+.regalo:active { transform: translateY(4px) rotate(-1deg); }
+
+/* ---------- Música ---------- */
+.reproductor { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.disco {
+  width: 130px; height: 130px; border-radius: 50%;
+  background: repeating-radial-gradient(circle, #2a2027 0 3px, #3a2f38 3px 6px);
+  display: grid; place-items: center;
+  border: 4px solid var(--rojo);
+  margin-bottom: 8px;
+}
+.disco .hoyo { width: 34px; height: 34px; border-radius: 50%; background: var(--rojo); border: 5px solid var(--crema); }
+.disco.girando { animation: girar 4s linear infinite; }
+@keyframes girar { to { transform: rotate(360deg); } }
+.cancion-nombre { font-size: 1.4rem; font-weight: 700; }
+.cancion-artista { opacity: .75; margin-bottom: 8px; }
+.dedicatoria {
+  background: var(--crema);
+  border-radius: 18px;
+  padding: 14px 18px;
+  max-width: 320px;
+  font-family: "Caveat", cursive;
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+/* ---------- Rosas y frases flotantes ---------- */
+#rosas { overflow: hidden; }
+.rosas-snoopy { position: relative; z-index: 2; }
+.frases-capa { position: absolute; inset: 0; pointer-events: none; z-index: 3; overflow: hidden; }
+.frase {
+  position: absolute;
+  bottom: -60px;
+  max-width: 72%;
+  background: rgba(255, 250, 240, .92);
+  border: 2px solid var(--rosa-medio);
+  color: var(--rojo);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: "Caveat", cursive;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.1;
+  animation: subir 9s linear forwards;
+}
+@keyframes subir {
+  0%   { transform: translateY(0) rotate(-2deg); opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { transform: translateY(-50dvh) rotate(2deg); }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-110dvh) rotate(-2deg); opacity: 0; }
+}
+
+/* ---------- Galería ---------- */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: min(100%, 520px);
+  padding-top: 30px;
+}
+.foto {
+  background: #fff;
+  padding: 8px 8px 26px;
+  border-radius: 6px;
+  box-shadow: 0 5px 12px rgba(0,0,0,.18);
+  cursor: pointer;
+  border: 0;
+  font: inherit;
+  transition: transform .2s;
+}
+.foto:nth-child(odd)  { transform: rotate(-2deg); }
+.foto:nth-child(even) { transform: rotate(2deg); }
+.foto:active { transform: scale(1.04) rotate(0); }
+.foto img, .foto .ph { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; border-radius: 3px; }
+.foto .ph { border-radius: 3px; font-size: .7rem; }
+#fotos { justify-content: flex-start; padding-top: 64px; }
+
+.visor {
+  position: fixed; inset: 0; z-index: 50;
+  background: rgba(40, 20, 30, .88);
+  display: grid; place-items: center; padding: 20px;
+}
+.visor[hidden] { display: none; }
+.visor-contenido { max-width: 100%; max-height: 82dvh; }
+.visor-contenido img { max-width: 100%; max-height: 82dvh; border-radius: 8px; display: block; }
+.visor-contenido .ph { width: min(80vw, 400px); background: #fff; }
+.visor-cerrar {
+  position: absolute; top: max(14px, env(safe-area-inset-top)); right: 14px;
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 0; background: #fff; color: var(--rojo); font-size: 1.2rem; cursor: pointer;
+}
+
+/* ---------- Vela ---------- */
+.pastel { position: relative; width: 220px; height: 210px; margin: 10px 0 6px; }
+.plato { position: absolute; bottom: 0; left: 0; right: 0; height: 16px; background: #fff; border: 3px solid var(--rojo); border-radius: 50%; }
+.capa { position: absolute; left: 20px; right: 20px; border: 3px solid var(--rojo); border-radius: 14px; }
+.capa-abajo  { bottom: 8px;  height: 60px; background: var(--rosa-medio); }
+.capa-arriba { bottom: 62px; height: 52px; background: var(--crema); left: 45px; right: 45px; }
+.capa-arriba::before { /* glaseado */
+  content: ""; position: absolute; top: -3px; left: -3px; right: -3px; height: 16px;
+  background: var(--rojo); border-radius: 14px 14px 20px 20px;
+}
+.vela-cuerpo { position: absolute; bottom: 112px; left: calc(50% - 8px); width: 16px; height: 46px; background: repeating-linear-gradient(135deg, #fff 0 6px, var(--cielo) 6px 12px); border: 3px solid var(--rojo); border-radius: 4px; }
+.mecha { position: absolute; bottom: 158px; left: calc(50% - 1.5px); width: 3px; height: 10px; background: var(--tinta); }
+.llama {
+  position: absolute; bottom: 166px; left: calc(50% - 11px);
+  width: 22px; height: 34px;
+  background: radial-gradient(ellipse at 50% 75%, #fff6b0 0 30%, #ffb52e 60%, #ff6a2e 100%);
+  border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+  transform-origin: 50% 100%;
+  animation: llama .35s ease-in-out infinite alternate;
+  box-shadow: 0 0 22px 8px rgba(255, 170, 40, .55);
+}
+@keyframes llama { from { transform: scale(1, 1) rotate(-3deg); } to { transform: scale(.92, 1.08) rotate(3deg); } }
+.llama.apagada { animation: none; opacity: 0; transform: scale(.2); transition: all .4s; box-shadow: none; }
+.humo { position: absolute; bottom: 170px; left: calc(50% - 4px); width: 8px; height: 8px; border-radius: 50%; background: rgba(120,120,120,.5); opacity: 0; }
+.humo.sale { animation: humo 2s ease-out forwards; }
+@keyframes humo { 0% { opacity: .8; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-70px) scale(5); } }
+
+/* ---------- Carta ---------- */
+.carta-papel {
+  width: min(100%, 420px);
+  background:
+    repeating-linear-gradient(transparent 0 33px, #f3c5d0 33px 34px),
+    var(--crema);
+  border: 3px solid var(--rojo);
+  border-radius: 8px;
+  padding: 22px 22px 14px;
+  text-align: left;
+  font-family: "Caveat", cursive;
+  font-size: 1.6rem;
+  line-height: 34px;
+  box-shadow: var(--sombra);
+  max-height: 55dvh;
+  overflow-y: auto;
+}
+.carta-papel p { margin: 0 0 34px; }
+.carta-papel .firma { text-align: right; margin-bottom: 8px; }
+#carta { justify-content: flex-start; padding-top: 40px; }
+#carta .snoopy-slot { width: min(36vw, 140px); }
+
+/* ---------- Confeti de corazones ---------- */
+#confeti { position: fixed; inset: 0; pointer-events: none; z-index: 60; overflow: hidden; }
+.corazon { position: absolute; top: -40px; font-size: 1.6rem; animation: caer linear forwards; }
+@keyframes caer { to { transform: translateY(110dvh) rotate(360deg); } }
+
+/* ---------- Accesibilidad ---------- */
+button:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+@media (min-width: 700px) {
+  .regalos-grid { grid-template-columns: repeat(4, 1fr); width: min(100%, 900px); }
+  .galeria { grid-template-columns: repeat(4, 1fr); width: min(100%, 900px); }
+}
+
+/* ---------- Enlaces que se ven como botones ---------- */
+a { color: inherit; }
+a.btn, a.regalo, a.volver { text-decoration: none; display: inline-block; }
+a.regalo { display: flex; }
+[hidden] { display: none !important; }
+
+/* ==========================================================
+   PÁGINA "MIS FOTOS FAVORITAS" (solo afecta a fotos.html)
+   ========================================================== */
+#fotos { padding-top: 96px; gap: 14px; }
+
+/* Guirnalda de banderines arriba */
+#fotos .guirnalda {
+  position: absolute; top: 0; left: 0; right: 0; height: 58px;
+  display: flex; justify-content: space-around; padding-top: 12px;
+  z-index: 2; pointer-events: none;
+}
+#fotos .guirnalda::before { /* el hilo */
+  content: ""; position: absolute; top: 10px; left: -2%; right: -2%;
+  border-top: 3px solid var(--rojo); border-radius: 50%;
+  height: 20px;
+}
+#fotos .guirnalda i {
+  width: 7.2%; height: 34px; margin-top: 8px;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: var(--rojo);
+  transform-origin: 50% 0;
+  animation: balanceo 3.6s ease-in-out infinite alternate;
+}
+#fotos .guirnalda i:nth-child(4n+2) { background: var(--rosa-medio); animation-delay: -.6s; }
+#fotos .guirnalda i:nth-child(4n+3) { background: #fff; animation-delay: -1.2s; }
+#fotos .guirnalda i:nth-child(4n)   { background: var(--cielo); animation-delay: -1.8s; }
+@keyframes balanceo { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+
+/* Corazones y huellitas de fondo */
+#fotos .fondo-corazones { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+#fotos .fondo-corazones span {
+  position: absolute; bottom: -50px; opacity: 0;
+  animation: flotar 14s linear infinite;
+}
+#fotos .fondo-corazones span:nth-child(1) { left: 6%;  font-size: 1.6rem; animation-delay: 0s; }
+#fotos .fondo-corazones span:nth-child(2) { left: 22%; font-size: 1.2rem; animation-delay: 3s; }
+#fotos .fondo-corazones span:nth-child(3) { left: 38%; font-size: 1.8rem; animation-delay: 6s; }
+#fotos .fondo-corazones span:nth-child(4) { left: 52%; font-size: 1.3rem; animation-delay: 1.5s; }
+#fotos .fondo-corazones span:nth-child(5) { left: 66%; font-size: 1.7rem; animation-delay: 8s; }
+#fotos .fondo-corazones span:nth-child(6) { left: 80%; font-size: 1.3rem; animation-delay: 4.5s; }
+#fotos .fondo-corazones span:nth-child(7) { left: 92%; font-size: 1.5rem; animation-delay: 10s; }
+#fotos .fondo-corazones span:nth-child(8) { left: 14%; font-size: 1.2rem; animation-delay: 11s; }
+@keyframes flotar {
+  0%   { transform: translateY(0) rotate(0); opacity: 0; }
+  10%  { opacity: .55; }
+  90%  { opacity: .55; }
+  100% { transform: translateY(-115dvh) rotate(25deg); opacity: 0; }
+}
+
+/* Título a mano */
+#fotos .titulo {
+  font-family: "Caveat", cursive;
+  font-size: clamp(2.6rem, 12vw, 3.8rem);
+  max-width: 14ch;
+  text-shadow: 3px 3px 0 #fff;
+  position: relative; z-index: 1;
+}
+#fotos .subtitulo { position: relative; z-index: 1; font-size: 1.05rem; }
+#fotos .volver { top: 66px; }
+
+/* Polaroids con cinta adhesiva y chinche de corazón */
+#fotos .galeria { position: relative; z-index: 1; gap: 22px 14px; padding-top: 18px; }
+#fotos .foto { position: relative; }
+#fotos .foto::before { /* cinta */
+  content: ""; position: absolute; top: -12px; left: 50%;
+  width: 62px; height: 22px; margin-left: -31px;
+  background: rgba(255, 179, 198, .85);
+  border-left: 2px dashed rgba(255,255,255,.7);
+  border-right: 2px dashed rgba(255,255,255,.7);
+  transform: rotate(-4deg);
+  z-index: 2;
+}
+#fotos .foto:nth-child(3n+2)::before { background: rgba(207, 232, 247, .9); transform: rotate(5deg); }
+#fotos .foto:nth-child(3n)::before   { background: rgba(255, 230, 150, .9); transform: rotate(-2deg); }
+#fotos .foto::after { /* pegatina en la esquina */
+  position: absolute; bottom: -6px; right: -6px; font-size: 1.4rem;
+  content: "💕";
+}
+#fotos .foto:nth-child(4n+2)::after { content: "🌹"; left: -6px; right: auto; }
+#fotos .foto:nth-child(4n+3)::after { content: "🐾"; }
+#fotos .foto:nth-child(4n)::after   { content: "✨"; left: -6px; right: auto; }
+
+/* Cierre con Snoopy */
+#fotos .cierre-fotos { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 8px; }
+#fotos .cierre-fotos .snoopy-slot { width: min(40vw, 150px); }
+#fotos .firma-fotos { font-family: "Caveat", cursive; font-size: 1.7rem; font-weight: 700; color: var(--rojo); }
+
+
+/* ---------- Fotos más grandes ---------- */
+#fotos .galeria {
+  grid-template-columns: 1fr;      /* una foto por fila en el celular */
+  width: min(100%, 380px);
+  gap: 32px;
+}
+#fotos .foto { padding: 12px 12px 36px; }
+#fotos .foto img,
+#fotos .foto .ph { aspect-ratio: 4 / 5; }   /* más alto que un cuadro */
+
+/* Cuando la foto se abre en grande */
+.visor-contenido { max-height: 90dvh; }
+.visor-contenido img { max-height: 88dvh; }
+
+/* En pantallas grandes (computador) vuelven a ser varias por fila */
+@media (min-width: 700px) {
+  #fotos .galeria { grid-template-columns: repeat(3, 1fr); width: min(100%, 1000px); }
+}

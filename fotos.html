@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Mis fotos favoritas 📸</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="pagina activa" id="fotos">
+
+    <!-- Guirnalda de banderines -->
+    <div class="guirnalda" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+
+    <!-- Corazones que suben suavemente de fondo -->
+    <div class="fondo-corazones" aria-hidden="true">
+      <span>💕</span><span>🌸</span><span>💗</span><span>🐾</span><span>💖</span><span>🌷</span><span>💕</span><span>🐾</span>
+    </div>
+
+    <a class="volver" href="regalos.html">← Volver</a>
+
+    <h1 class="titulo">💕 Mis fotos favoritas 💕</h1>
+    <p class="subtitulo">Cada una guarda un momento contigo. Toca para verlas grandes 🐾</p>
+
+    <div class="galeria" id="galeria"></div>
+
+    <div class="cierre-fotos">
+      <div class="snoopy-slot"><img src="images/snoopy-fotos.png" alt="Snoopy con cámara" onerror="ph(this)" /></div>
+      <p class="firma-fotos">…y las que faltan por tomar 💗</p>
+    </div>
+
+    <!-- Visor de fotos -->
+    <div class="visor" id="visor" hidden>
+      <button class="visor-cerrar" id="visor-cerrar" aria-label="Cerrar">✕</button>
+      <div class="visor-contenido" id="visor-contenido"></div>
+    </div>
+
+  </main>
+  <div id="confeti"></div>
+  <script src="script.js"></script>
+</body>
+</html>

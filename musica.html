@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Una canción para ti 🎵</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="pagina activa" id="musica">
+    <a class="volver" href="regalos.html">← Volver</a>
+    <h1 class="titulo">Esta canción es para ti</h1>
+
+    <div class="snoopy-slot">
+      <img src="images/snoopy-musica-grande.png" alt="Snoopy escuchando música" onerror="ph(this)" />
+    </div>
+
+    <div class="reproductor">
+      <div class="disco" id="disco"><div class="hoyo"></div></div>
+      <!-- CAMBIA el nombre de la canción y el artista -->
+      <p class="cancion-nombre">Por Ti</p>
+      <p class="cancion-artista">3 AM</p>
+      <!-- Pon tu archivo en la carpeta music/ y cambia el nombre aquí -->
+      <audio id="audio" src="music/cancion.mp3" preload="none"></audio>
+      <button class="btn btn-si" id="btn-play">▶ Reproducir</button>
+    </div>
+
+    <p class="dedicatoria">
+      <!-- ESCRIBE aquí tu dedicatoria -->
+      Escogí esta canción porque me recuerda a ti 💕
+    </p>
+  </main>
+  <div id="confeti"></div>
+  <script src="script.js"></script>
+</body>
+</html>

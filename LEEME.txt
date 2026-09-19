@@ -1,0 +1,23 @@
+PÁGINAS
+-------
+index.html   -> Feliz Día Del Amor y Amistad mi Ishita (Sí / No)
+amor.html    -> Te amoo mi amorcito dindo!!!
+regalos.html -> Regalos para ti (los Snoopy)
+musica.html  -> Canción dedicada
+rosas.html   -> Snoopy con rosas + 14 frases flotantes
+fotos.html   -> Galería de fotos
+vela.html    -> Sopla la vela
+carta.html   -> Feliz día mi esposita hermosa + carta
+
+CÓMO PERSONALIZAR
+-----------------
+1) Imágenes de Snoopy -> carpeta images/ (nombres exactos):
+   snoopy-inicio.png, snoopy-amor.png, snoopy-musica.png, snoopy-rosas-mini.png,
+   snoopy-fotos.png, snoopy-vela.png, snoopy-musica-grande.png,
+   snoopy-rosas.png (Snoopy con ramo de rosas), snoopy-carta.png
+   (Mientras no existan, se ve un cuadro punteado con el nombre del archivo.)
+2) Fotos de ustedes -> images/fotos/foto1.jpg ... foto12.jpg
+3) Canción -> music/cancion.mp3 (y cambia nombre/artista en musica.html)
+4) Frases (14) y lista de fotos -> arriba de script.js
+5) Carta -> dentro de carta.html
+Para verla en el celular: instala "Live Server" en VS Code, clic derecho en index.html > Open with Live Server.
